@@ -1,0 +1,17 @@
+{
+    "name": "tmt/aeee",
+    "autoload": {
+        "psr-4": {
+            "app\\": "./"
+        }
+    },
+    "authors": [
+        {
+            "name": "Tri Tran Minh",
+            "email": "tranminhtri0253@gmail.com"
+        }
+    ],
+    "require": {
+        "vlucas/phpdotenv": "^5.5"
+    }
+}
