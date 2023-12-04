@@ -9,7 +9,7 @@
 					<h1>Become A Member</h1>
 					<ol class="sj-breadcrumb">
 						<li><a href="javascript:void(0);">Home</a></li>
-						<li><a href="javascript:void(0);">Login/Register</a></li>
+						<li><a href="javascript:void(0);">Login</a></li>
 					</ol>
 				</div>
 			</div>
@@ -25,7 +25,7 @@
 <main id="sj-main" class="sj-main sj-haslayout sj-sectionspace sj-loginupdates">
 	<div id="sj-twocolumns" class="sj-twocolumns">
 		<div class="container">
-			<div class="row">
+			<div class="row d-flex justify-content-center">
 				<div class="col-12 col-sm-12 col-md-12 col-lg-4">
 					<aside id="sj-sidebarvtwo" class="sj-sidebar">
 						<div class="sj-widget sj-widgetlogin">
@@ -33,31 +33,37 @@
 								<h3>Login Now</h3>
 							</div>
 							<div class="sj-widgetcontent">
-								<form class="sj-formtheme sj-formlogin">
+								<form action="" method="post" class="sj-formtheme sj-formlogin">
 									<fieldset>
 										<div class="form-group">
-											<input type="text" name="yourname" class="form-control" placeholder="Username">
+											<input type="text" name="username" class="form-control" placeholder="Username" value="<?php echo $userModel->username ?>">
 										</div>
 										<div class="form-group">
-											<input type="password" name="password" class="form-control" placeholder="Password">
+											<input type="password" name="password" class="form-control" placeholder="Password" value="<?php echo $userModel->password ?>">
 										</div>
-										<div class="form-group sj-forgotpass">
-											<div class="sj-checkbox">
-												<input type="checkbox" id="login">
-												<label for="login">keep me logged in</label>
+										<?php
+										if ($userModel->hasError('username') || $userModel->hasError('password')) {
+										?>
+											<div class="form-group alert alert-danger alert-dismissible fade show" role="alert">
+												Incorrect username or password!
+												<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+													<span aria-hidden="true">&times;</span>
+												</button>
 											</div>
+										<?php
+										}
+										?>
+										<div class="form-group sj-forgotpass">
 											<a class="sj-forgorpass" href="javascript:void(0);">Forgot Password?</a>
 										</div>
-										<div class="sj-btnarea">
-											<a class="sj-btn sj-btnactive" href="javascript:void(0);">Login</a>
-										</div>
+										<button type="submit" class="sj-btn sj-btnactive">Login</button>
 									</fieldset>
 								</form>
 							</div>
 						</div>
 					</aside>
 				</div>
-				<div class="col-12 col-sm-12 col-md-12 col-lg-8">
+				<!-- <div class="col-12 col-sm-12 col-md-12 col-lg-8">
 					<div id="sj-content" class="sj-content">
 						<div class="sj-registerarea">
 							<div class="registernow">
@@ -113,7 +119,7 @@
 							</div>
 						</div>
 					</div>
-				</div>
+				</div> -->
 			</div>
 		</div>
 	</div>

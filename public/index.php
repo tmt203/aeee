@@ -1,6 +1,7 @@
 <?php 
 use app\core\Application;
 use app\controllers\SiteController;
+use app\controllers\AuthController;
 use app\controllers\ArticleController;
 use app\models\User;
 
@@ -9,7 +10,7 @@ $dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__));
 $dotenv->load();
 
 $config = [
-  'user' => User::class,
+  'userClass' => User::class,
   'db' => [
     'dsn' => $_ENV['DB_DSN'],
     'user' => $_ENV['DB_USER'],
@@ -39,11 +40,20 @@ $app->router->get('/publish/for-readers', [SiteController::class, 'forReaders'])
 $app->router->get('/publish/for-librarians', [SiteController::class, 'forLibrarians']);
 $app->router->get('/announcements', [SiteController::class, 'announcements']);
 
+// auth
+$app->router->get('/auth/login', [AuthController::class, 'login']);
+$app->router->post('/auth/login', [AuthController::class, 'login']);
+$app->router->get('/auth/register', [AuthController::class, 'register']);
+$app->router->post('/auth/register', [AuthController::class, 'register']);
+$app->router->get('/auth/logout', [AuthController::class, 'logout']);
+
+
 // api
 $app->router->get('/api/articles', [ArticleController::class, 'getAllArticles']);
+$app->router->post('/api/articles/increaseArticleViews', [ArticleController::class, 'increaseArticleViews']);
 $app->router->post('/api/articles/getArticlesByVolumeAndIssueAndDate', [ArticleController::class, 'getArticlesByVolumeAndIssueAndDate']);
-$app->router->post('/api/articles/search', [ArticleController::class, 'search']);
 $app->router->post('/api/articles/filterArticles', [ArticleController::class, 'filterArticles']);
+$app->router->post('/api/articles/searchAndFilterArticles', [ArticleController::class, 'searchAndFilterArticles']);
 
 
 $app->run();

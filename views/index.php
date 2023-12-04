@@ -1,6 +1,22 @@
 <?php
 use app\controllers\ArticleController;
+use app\core\Application;
+
 $articleController = new ArticleController();
+
+$flashMessage = Application::$app->session->getFlash('success');
+
+// Flash message
+if ($flashMessage) {
+?>
+  <script>
+    // Show Toastr notification when the page loads
+    document.addEventListener('DOMContentLoaded', function() {
+			toastr.success('<?php echo $flashMessage; ?>');
+    });
+  </script>
+<?php
+}
 ?>
 <!--************************************
 					Home Banner Start
@@ -81,13 +97,14 @@ $articleController = new ArticleController();
 								*************************************-->
 						<section class="sj-haslayout sj-sectioninnerspace">
 							<div class="sj-borderheading">
-								<h3>Editor’s Pick</h3>
+								<h3>Most Views</h3>
 								<a class="sj-btnview" href="javascript:void(0);">View All</a>
 							</div>
 							<div id="sj-editorchoiceslider" class="sj-editorchoiceslider sj-editorschoice owl-carousel">
 								<?php
 								echo '<div class="item">';
-								foreach ($articleController->getAllArticles() as $index => $article) {
+								foreach ($articleController->sortArticles('views', 0, 10, 0) as $index => $article) {
+									if (!$article->restrictTo || in_array(Application::$app->session->get('user'), $article->restrictTo)) {		
 								?>
 									<article class="sj-post sj-editorchoice">
 										<figure class="sj-postimg">
@@ -96,18 +113,20 @@ $articleController = new ArticleController();
 										<div class="sj-postcontent">
 											<div class="sj-head">
 												<span class="sj-username">
-													<a target="_blank" href="<?php echo $article->path ?>">
+													<a href="javascript:void(0);">
 														<?php echo $article->author ?>
 													</a>
 												</span>
 												<h3>
-													<a target="_blank" href="<?php echo $article->path ?>"><?php echo ucfirst($article->title) ?></a>
+													<a class="viewArticleBtn" data-id="<?php echo $article->id ?>" href="javascript:void(0);" data-toggle="modal" data-target="#pdfModal" data-path="<?php echo $article->path ?>"><?php echo ucfirst($article->title) ?></a>
 												</h3>
+												<span>Views: <?php echo $article->views ?></span>
 											</div>
-											<a class="sj-btn" target="_blank" href="<?php echo $article->path ?>">View Full Article</a>
+											<a class="sj-btn viewArticleBtn" href="javascript:void(0);" data-id="<?php echo $article->id ?>" data-toggle="modal" data-target="#pdfModal" data-path="<?php echo $article->path ?>">View Full Article</a>
 										</div>
-									</article>
-									<?php
+									</article>																	
+									<?php 
+									}
 									if (($index + 1) % 4 == 0) {
 										echo "</div>";
 										echo '<div class="item">';
@@ -133,7 +152,7 @@ $articleController = new ArticleController();
 							<div class="sj-previousissues">
 								<ul class="sj-navtabs nav" id="myTab" role="tablist" style="height: 170px; overflow-y: scroll;">
 									<?php
-									for ($i = 2023; $i >= 2002; $i--) {
+									for ($i = 2022; $i >= 2002; $i--) {
 									?>
 										<li class="nav-item">
 											<a class="nav-link" id="home-tab" data-toggle="tab" href="#<?php echo $i ?>" role="tab" aria-controls="<?php echo $i ?>" aria-selected="true">
@@ -146,11 +165,11 @@ $articleController = new ArticleController();
 								</ul>
 								<div class="sj-tabcontent tab-content" id="myTabContent">
 									<?php
-									for ($year = 2023; $year >= 2002; $year--) {
+									for ($year = 2022; $year >= 2002; $year--) {
 										// Get articles for the year
 										$articlesByYear = $articleController->getArticlesByYear($year);
 									?>
-										<div class="tab-pane fade <?php if ($year == 2023) echo "show active" ?>" id="<?php echo $year ?>" role="tabpanel">
+										<div class="tab-pane fade <?php if ($year == 2022) echo "show active" ?>" id="<?php echo $year ?>" role="tabpanel">
 											<div id="sj-issuesslider-<?php echo $year ?>" class="sj-issuesslider-<?php echo $year ?> sj-issuesslider owl-carousel">
 												<?php
 												if (count($articlesByYear) !== 0) {
@@ -163,9 +182,11 @@ $articleController = new ArticleController();
 															</figure>
 															<div class="sj-postcontent">
 																<div class="sj-head">
-																	<span class="sj-username"><a href="javascript:void(0);"><?php echo $article->author ?></a></span>
+																	<span class="sj-username">
+																		<a class="viewArticleBtn" data-id="<?php echo $article->id ?>" href="javascript:void(0);" data-toggle="modal" data-target="#pdfModal" data-path="<?php echo $article->path ?>"><?php echo $article->author ?></a>
+																	</span>
 																	<h3>
-																		<a href="<?php echo $article->path ?>"><?php echo $article->title ?></a>
+																		<a class="viewArticleBtn" data-id="<?php echo $article->id ?>" href="javascript:void(0);" data-toggle="modal" data-target="#pdfModal" data-path="<?php echo $article->path ?>"><?php echo $article->title ?></a>
 																	</h3>
 																</div>
 															</div>
@@ -202,7 +223,7 @@ $articleController = new ArticleController();
 							</div>
 							<div id="sj-upcomingbooksslider" class="sj-upcomingbooksslider sj-upcomingbooks owl-carousel">
 								<?php
-								foreach ($articleController->getArticlesByYear(2023) as $index => $article) {
+								foreach ($articleController->getArticlesByYear(date("Y")) as $index => $article) {
 								?>
 									<div class="item">
 										<div class="sj-upcomingbook">
@@ -210,7 +231,7 @@ $articleController = new ArticleController();
 												<img src="/images/comingbooks/img-01.jpg" alt="image description">
 											</figure>
 											<div class="sj-postcontent">
-												<h3><a target="_blank" href="<?php echo $article->path ?>"><?php echo $article->title ?></a></h3>
+												<h3><a class="viewArticleBtn" data-id="<?php echo $article->id ?>" href="javascript:void(0);" data-toggle="modal" data-target="#pdfModal" data-path="<?php echo $article->path ?>"><?php echo $article->title ?></a></h3>
 											</div>
 										</div>
 									</div>
@@ -232,8 +253,8 @@ $articleController = new ArticleController();
 							</div>
 							<div class="sj-newsposts">
 								<div id="sj-newsarticlesslider" class="sj-newsarticlesslider sj-newsarticles owl-carousel">
-								<?php
-									foreach ($articleController->getAllArticles() as $index => $article) {
+									<?php
+									foreach ($articleController->getCurrentIssues() as $index => $article) {
 									?>
 										<div class="item">
 											<div class="sj-newsarticle">
@@ -242,12 +263,12 @@ $articleController = new ArticleController();
 												</figure>
 												<div class="sj-newscontent">
 													<div class="sj-newshead">
-														<time datetime="2018-12-12" class="sj-posttimedate"><?php echo $articleController->formatDate($article->pubDate); ?></time>
-														<h3><a href="<?php echo $article->path ?>"><?php echo $article->title ?></a></h3>
-													</div>										
+														<time class="sj-posttimedate"><?php echo $articleController->formatDate($article->pubDate); ?></time>
+														<h3><a class="viewArticleBtn" data-id="<?php echo $article->id ?>" href="javascript:void(0);" data-toggle="modal" data-target="#pdfModal" data-path="<?php echo $article->path ?>"><?php echo $article->title ?></a></h3>
+													</div>
 												</div>
 											</div>
-										</div>								
+										</div>
 									<?php
 									}
 									?>
@@ -260,87 +281,26 @@ $articleController = new ArticleController();
 					</div>
 				</div>
 				<div class="col-12 col-sm-12 col-md-4 col-lg-3">
-					<aside id="sj-sidebar" class="sj-sidebar">
-						<div class="sj-widget sj-widgetsearch">
-							<div class="sj-widgetcontent">
-								<form id="indexSearchForm" class="sj-formtheme sj-formsearch">
-									<fieldset>
-										<input type="search" name="search" class="form-control" placeholder="Search here">
-										<button type="submit" class="sj-btnsearch"><i class="lnr lnr-magnifier"></i></button>
-									</fieldset>
-								</form>
-							</div>
-						</div>
-						<div class="sj-widget sj-widgetimpactfector">
-							<div class="sj-widgetcontent">
-								<ul>
-									<li>
-										<h3>Impact Factor<span>0.8</span></h3>
-										<h3>5 Year Impact Factor<span>0.8</span></h3>
-									</li>
-									<li>
-										<h3>Dr. Tan N. Nguyen</h3>
-										<div class="sj-description">
-											<p>Ton Duc Thang Univeristy, Editor-in-Chief <a href="javascript:void(0)">Read More</a></p>
-										</div>
-									</li>
-								</ul>
-							</div>
-						</div>
+					<aside id="sj-sidebar" class="sj-sidebar">						
 						<div class="sj-widget sj-widgetnoticeboard">
 							<div class="sj-widgetheading">
-								<h3>Notice Board</h3>
+								<h3>VSB-TUO</h3>
 							</div>
 							<div class="sj-widgetcontent">
 								<ul>
-									<li><a href="javascript:void(0);">Adipisicing elitaium sed dotas eiusm tempor incididunt utae labore etiate dolore magna aliqua enim.</a></li>
-									<li><a href="javascript:void(0);">Labore etiat dolore magna aliquaen ad minim veniam.</a></li>
-									<li><a href="javascript:void(0);">Duis aute irure dolor in reprehender</a></li>
+									<li><a href="https://www.vsb.cz/en/university/">University</a></li>
+									<li><a href="https://www.vsb.cz/en/partnership/">Partnership</a></li>
+									<li><a href="https://www.vsb.cz/en/media/">Media and University</a></li>
+									<li><a href="https://alumni.vsb.cz/en/">Alumni Network</a></li>
+									<li><a href="https://www.vsb.cz/en/study/">Study at VSB - Technical University of Ostrava</a></li>
 								</ul>
 							</div>
 						</div>
 						<div class="sj-widget sj-widgetadd">
-							<span class="sj-headtitle">Advertisment 270 x270</span>
 							<div class="sj-widgetcontent">
-								<figure class="sj-addimage"><a href="javascript:void(0);"><img src="/images/widget-add.jpg" alt="image description"></a></figure>
+								<figure class="sj-addimage"><a href="javascript:void(0);"><img src="/images/vsb-tuo-logo.png" alt="image description"></a></figure>
 							</div>
-						</div>
-						<div class="sj-widget sj-widgetquestions">
-							<div class="sj-widgetheading">
-								<h3>Question Of The Week</h3>
-							</div>
-							<div class="sj-widgetcontent">
-								<div class="sj-description">
-									<p>Consectetur adipisicing elit, sed aeiuse tempor incididunt ut labore etamiudon magna aliqua enim ad minim?</p>
-								</div>
-								<div class="sj-questions">
-									<div class="sj-selectgroup">
-										<span class="sj-radio">
-											<input id="sj-qone" type="radio" name="question" value="qone" checked="">
-											<label for="sj-qone">Sputum stain for acid-fast bacilli</label>
-										</span>
-										<span class="sj-radio">
-											<input id="sj-qtwo" type="radio" name="question" value="qtwo">
-											<label for="sj-qtwo">Pleural biopsy</label>
-										</span>
-										<span class="sj-radio">
-											<input id="sj-qthree" type="radio" name="question" value="qthree">
-											<label for="sj-qthree">Pleural fluid amylase</label>
-										</span>
-										<span class="sj-radio">
-											<input id="sj-qfour" type="radio" name="question" value="qfour">
-											<label for="sj-qfour">Pleural fluid cytology</label>
-										</span>
-									</div>
-									<a class="sj-btn" href="javascript:void(0);">Submit Now</a>
-								</div>
-							</div>
-						</div>
-						<div class="sj-widget sj-widgetadd">
-							<div class="sj-widgetcontent">
-								<figure class="sj-addimage"><a href="javascript:void(0);"><img src="/images/widget-add2.jpg" alt="image description"></a></figure>
-							</div>
-						</div>
+						</div>						
 					</aside>
 				</div>
 			</div>

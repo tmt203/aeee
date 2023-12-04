@@ -320,10 +320,6 @@ jQuery(document).on('ready', function () {
 				jQuery(this).removeClass('open');
 			}
 		});
-		jQuery('form').submit(function (event) {
-			event.preventDefault();
-			return false;
-		})
 	});
 	/*--------------------------------------
 			THEME VERTICAL SCROLLBAR		
@@ -360,72 +356,51 @@ jQuery(document).on('ready', function () {
 	});
 
 	// My Custom
-	// --------------- Event on index.php ---------------
-	$('#indexSearchForm').submit(function (e) {
-		e.preventDefault();
+	const BASE_URL = location.protocol + '//' + location.host;
 
-		const formData = new FormData(this);
-
+	// Use event delegation on a parent element that exists in the DOM at all times
+	$(document).on('click', '.viewArticleBtn', function () {
+		const id = $(this).data('id');
 		$.ajax({
-			url: "http://localhost:8080/api/articles/search",
+			url: BASE_URL + '/api/articles/increaseArticleViews',
 			method: 'post',
-			data: Object.fromEntries(formData),
-			success: function (response) {
-				const articles = JSON.parse(response);
-				let htmlContent = '<div class="item">';
-				articles.forEach((article, index) => {
-					htmlContent += `
-					<article class="sj-post sj-editorchoice">
-						<figure class="sj-postimg">
-							<img src="/images/editorchoice/img-01.jpg" alt="image" />
-						</figure>
-						<div class="sj-postcontent">
-							<div class="sj-head">
-								<span class="sj-username">
-									<a href="javascript:void(0);">
-										${article.author}
-									</a>
-								</span>
-								<h3>
-								<a target="_blank" href="${article.path}">${article.title}</a>
-								</h3>
-							</div>						
-							<a class="sj-btn" target="_blank" href="${article.path}">View Full Article</a>
-						</div>
-					</article>
-					`;
-				});
-			},
-			error: function (err) {
-				console.log(err);
-			}
+			data: { id }
 		});
 	});
-	// --------------- Event on index.php ---------------
+
+	$('#pdfModal').on('show.bs.modal', function (e) {
+		$(this).find('iframe').attr('src', $(e.relatedTarget).data('path'));
+	});
 
 	// --------------- Event on articles.php ---------------
 	function updateArticles(articles, tag) {
-		let htmlContent = '';
-		articles.forEach(article => {
-			htmlContent += `
-			<article class="sj-post sj-editorchoice">
-				<figure class="sj-postimg">
-					<img src="/images/editorchoice/img-08.jpg" alt="image description">
-				</figure>
-				<div class="sj-postcontent">
-					<div class="sj-head">
-						<span class="sj-username"><a href="javascript:void(0);">${article.author}</a></span>
-						<h3><a target="_blank" href="${article.path}">${article.title}</a></h3>
-					</div>
-					<div class="sj-description">
-						<p>DOI: ${article.doi}. pp. ${article.firstPage}-${article.lastPage}</p>
-					</div>
-					<a class="sj-btn" href="${article.path}">View Full Article</a>
-				</div>
-			</article>
-			`;
-		});
-		tag.html(htmlContent);
+		if (articles instanceof Array) {
+			let htmlContent = '';
+			articles.forEach(article => {
+				if (!article.restrictTo || article.restrictTo.includes(JSON.parse(localStorage.getItem('userId')))) {
+					htmlContent += `
+					<article class="sj-post sj-editorchoice">
+						<figure class="sj-postimg">
+							<img src="/images/editorchoice/img-08.jpg" alt="image description">
+						</figure>
+						<div class="sj-postcontent">
+							<div class="sj-head">
+								<span class="sj-username"><a href="javascript:void(0);">${article.author}</a></span>
+								<h3><a class="viewArticleBtn" data-id="${article.id}" href="javascript:void(0);" data-toggle="modal" data-target="#pdfModal" data-path="${article.path}">${article.title}</a></h3>
+							</div>
+							<div class="sj-description">
+								<p>DOI: ${article.doi}. pp. ${article.firstPage}-${article.lastPage}</p>
+							</div>
+							<a class="viewArticleBtn sj-btn" data-id="${article.id}" href="javascript:void(0);" data-toggle="modal" data-target="#pdfModal" data-path="${article.path}">View Full Article</a>
+						</div>
+					</article>
+					`;
+				}
+			});
+			tag.html(htmlContent);
+		} else {
+			tag.html('No article found');
+		}
 	}
 
 	$('#sortArticleForm').submit(function (e) {
@@ -434,13 +409,12 @@ jQuery(document).on('ready', function () {
 		const formData = new FormData(this);
 
 		$.ajax({
-			url: 'http://localhost:8080/api/articles/filterArticles',
+			url: BASE_URL + '/api/articles/filterArticles',
 			method: 'post',
 			data: Object.fromEntries(formData),
 			success: function (response) {
 				const articles = JSON.parse(response);
 				updateArticles(articles, $('#sortedArticles'));
-				// console.log(data);
 			},
 			error: function (err) {
 				console.log(err)
@@ -452,9 +426,28 @@ jQuery(document).on('ready', function () {
 		e.preventDefault();
 		const formData = new FormData(this);
 		$.ajax({
-			url: 'http://localhost:8080/api/articles/search',
+			url: BASE_URL + '/api/articles/searchAndFilterArticles',
 			method: 'post',
 			data: Object.fromEntries(formData),
+			success: function (response) {
+				const articles = JSON.parse(response);
+				updateArticles(articles, $('#sortedArticles'));
+			},
+			error: function (err) {
+				console.log(err);
+			}
+		});
+	});
+
+	$('#filterCurrentArticlesBtn').click(function () {
+		const content = $("input[name='content']").val() ?? null;
+		const searchBy = $('#searchBy').find(":selected").val() ?? null;
+		const pastYear = $('input[name="pastYear"]:checked').val() ?? null;
+
+		$.ajax({
+			url: BASE_URL + '/api/articles/searchAndFilterArticles',
+			method: 'post',
+			data: { content, searchBy, pastYear },
 			success: function (response) {
 				const articles = JSON.parse(response);
 				updateArticles(articles, $('#sortedArticles'));
@@ -486,7 +479,7 @@ jQuery(document).on('ready', function () {
 		if (date !== '') formData.append('date', date);
 
 		$.ajax({
-			url: 'http://localhost:8080/api/articles/getArticlesByVolumeAndIssueAndDate',
+			url: BASE_URL + '/api/articles/getArticlesByVolumeAndIssueAndDate',
 			method: 'post',
 			data: formData,
 			processData: false,
@@ -508,6 +501,30 @@ jQuery(document).on('ready', function () {
 	});
 	// --------------- Event on issues_years.php ---------------
 
+	// --------------- Event on register.php ---------------
+	// $('#registerBtn').click(function () {
+	// 	console.log('button clicked');
+	// });
+
+	// $('#registerForm').submit(function (e) {
+	// 	e.preventDefault();
+
+	// 	const formData = new FormData(this);
+
+	// 	$.ajax({
+	// 		url: BASE_URL + '/api/auth/register',
+	// 		method: 'post',
+	// 		data: Object.fromEntries(formData),
+	// 		success: function (response) {
+	// 			console.log(response);
+	// 		},
+	// 		error: function (err) {
+	// 			console.log(err);
+	// 		}
+	// 	});
+
+	// });
+	// --------------- Event on register.php ---------------
 
 
 });

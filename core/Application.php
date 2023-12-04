@@ -25,7 +25,7 @@ class Application {
     $this->router = new Router($this->request, $this->response);
     $this->db = new Database($config['db']);
     $this->session = new Session();
-    $this->userClass = $config['user'];
+    $this->userClass = $config['userClass'];
     $this->view = new View();
 
     $primaryValue = $this->session->get('user');

@@ -1422,10 +1422,6 @@ body.sj-home .sj-header {
   border-top: 6px solid;
   border-right: 6px solid transparent !important;
 }
-.sj-userloginarea,
-body.sj-userlogin .sj-loginarea {
-  display: none;
-}
 .sj-loginarea,
 body.sj-userlogin .sj-userloginarea {
   display: block;
