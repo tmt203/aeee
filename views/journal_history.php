@@ -34,15 +34,15 @@
 								<!-- <span>Present and Past</span> -->
 								<h2>Journal History</h2>
 								<div class="sj-description">
-									<p>The scientific journal Advances in Electrical and Electronic Engineering was originally published in printed form at the Faculty of Electrical Engineering and Information Technology (formerly Faculty of Electrical Engineering), University of Zilina in the city of Zilina, the Slovak Republic between the years 2002 and 2008. In 2009 it was decided to move the Editorial Office of this Journal to VSB-Technical University of Ostrava, the Czech Republic. In the same year the periodicity of the Advances in Electrical and Electronic Engineering was interrupted due to the complicated formal processes of the Journal transfer.</p>
-									<p>Since 2010 the Advances in Electrical and Electronic Engineering has been published in electronic form at VSB-Technical University of Ostrava, the Czech Republic, in collaboration with the Faculty of Electrical Engineering and Information Technology (formerly Faculty of Electrical Engineering), University of Zilina, under the terms of the Partnership Agreement, ISSN 1804-3119. The papers published in the Journal between 2002 and 2008 are, by courtesy of the Slovak partner, deposited in the Journal´s archive file. Since 2011 the Advances in Electrical and Electronic Engineering has also been published in printed form under ISSN 1336-1376.</p>
-									<p>The scientific journal Advances in Electrical and Electronic Engineering is indexed in major world's databases as are DOAJ, Driver, Google Scholar, and EBSCO. Since 2011 the Advances in Electrical and Electronic Engineering is also indexed in one of the most important and influential databases worldwide, the SciVerse Scopus.
+									<p style="display: block;">The scientific journal Advances in Electrical and Electronic Engineering was originally published in printed form at the Faculty of Electrical Engineering and Information Technology (formerly Faculty of Electrical Engineering), University of Zilina in the city of Zilina, the Slovak Republic between the years 2002 and 2008. In 2009 it was decided to move the Editorial Office of this Journal to VSB-Technical University of Ostrava, the Czech Republic. In the same year the periodicity of the Advances in Electrical and Electronic Engineering was interrupted due to the complicated formal processes of the Journal transfer.</p>
+									<p style="display: block;">Since 2010 the Advances in Electrical and Electronic Engineering has been published in electronic form at VSB-Technical University of Ostrava, the Czech Republic, in collaboration with the Faculty of Electrical Engineering and Information Technology (formerly Faculty of Electrical Engineering), University of Zilina, under the terms of the Partnership Agreement, ISSN 1804-3119. The papers published in the Journal between 2002 and 2008 are, by courtesy of the Slovak partner, deposited in the Journal´s archive file. Since 2011 the Advances in Electrical and Electronic Engineering has also been published in printed form under ISSN 1336-1376.</p>
+									<p style="display: block;">The scientific journal Advances in Electrical and Electronic Engineering is indexed in major world's databases as are DOAJ, Driver, Google Scholar, and EBSCO. Since 2011 the Advances in Electrical and Electronic Engineering is also indexed in one of the most important and influential databases worldwide, the SciVerse Scopus.
 										Starting from 2016 all articles submitted to <strong>Advances in Electrical and Electronic Engineering</strong> will undergo plagiarism check by <strong>Crossref Similarity Check (powered by iThenticate)</strong>.
 										Also we are very proud to inform you that our journal is from 2017 added in the Web of Science Core Collection database of Clarivate Analytics.
 									</p>
-									<p>All articles indexed in the SciVerse Scopus and Web of Science Core Collection database of Clarivate Analytics have also received the Digital Object Identifier (DOI) allowing unambiguous identification of every published article.</p>
-									<p>The Journal is also a partner of major international conferences. The International Scientific Committee selects the most beneficial articles presented at individual conferences and the selected articles are then published in special issues of the Advances in Electrical and Electronic Engineering.</p>
-									<p>The Editorial Office of the Advances in Electrical and Electronic Engineering journal consists of the members of the Faculty of Electrical Engineering and Computer Science, VSB-Technical University of Ostrava.</p>
+									<p style="display: block;">All articles indexed in the SciVerse Scopus and Web of Science Core Collection database of Clarivate Analytics have also received the Digital Object Identifier (DOI) allowing unambiguous identification of every published article.</p>
+									<p style="display: block;">The Journal is also a partner of major international conferences. The International Scientific Committee selects the most beneficial articles presented at individual conferences and the selected articles are then published in special issues of the Advances in Electrical and Electronic Engineering.</p>
+									<p style="display: block;">The Editorial Office of the Advances in Electrical and Electronic Engineering journal consists of the members of the Faculty of Electrical Engineering and Computer Science, VSB-Technical University of Ostrava.</p>
 								</div>
 							</div>
 							<div class="sj-ourhistory sj-sectioninnerspace">
@@ -52,14 +52,14 @@
 								<div class="sj-description">
 									<div id="publisher">
 										<h3>Publisher</h3>
-										<p><strong>Advances in Electrical and Electronic Engineering</strong><br /><strong>Faculty of Electrical Engineering and Computer Science</strong><br /><strong>VSB-Technical University of Ostrava</strong><br /><br />17.listopadu 2172/15<br />708 00 Ostrava-Poruba<br />Czech Republic<br /></p>
+										<p style="display: block;"><strong>Advances in Electrical and Electronic Engineering</strong><br /><strong>Faculty of Electrical Engineering and Computer Science</strong><br /><strong>VSB-Technical University of Ostrava</strong><br /><br />17.listopadu 2172/15<br />708 00 Ostrava-Poruba<br />Czech Republic<br /></p>
 										<p><a href="http://www.fei.vsb.cz/en/">Faculty of Electrical Engineering and Computer Science</a></p>
 									</div>
 									<div class="separator"></div>
 
 									<div id="sponsors">
 										<h3>Sponsors</h3>
-										<p><strong>Advances in Electrical and Electronic Engineering</strong><br /><strong>Faculty of Electrical Engineering and Information Technology</strong><br /><strong>University of Zilina</strong><br /><br />Univerzitna 1<br />010 26 Zilina<br />Slovakia<br /></p>
+										<p style="display: block;"><strong>Advances in Electrical and Electronic Engineering</strong><br /><strong>Faculty of Electrical Engineering and Information Technology</strong><br /><strong>University of Zilina</strong><br /><br />Univerzitna 1<br />010 26 Zilina<br />Slovakia<br /></p>
 										<p><a href="https://feit.uniza.sk/en/home-page/">Faculty of Electrical Engineering and Information Technology</a></p>
 									</div>
 								</div>

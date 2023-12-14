@@ -31,13 +31,7 @@
 						<div class="sj-authorguidelines">
 							<figure class="sj-guidelineimg"><img src="/images/author-guideline-img.jpg" alt="image description"></figure>
 							<div class="sj-introduction sj-sectioninnerspace">
-								<span>Information for Authors</span>
-								<h2>Animation Guideline</h2>
-								<div class="sj-description">
-									<p>Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore dolore magna aliqua enim adminim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur sed do eiusmod tempor incididunt ut labore.</p>
-									<p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum eapiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsame quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo ipsam voluptatem quia voluptasit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione.</p>
-									<p>Voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet consectetur adipiscite velit, sed quia non numquam eius modi tempora incidunt.</p>
-								</div>
+								<span>Information for Authors</span>								
 							</div>
 							<div class="sj-ouraims sj-sectioninnerspace">
 								<div class="sj-borderheading">
@@ -98,7 +92,8 @@
 										<!-- <p> -->
 										<!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/rIfRMoag1C0" frameborder="0" allowfullscreen></iframe> -->
 										<!-- </p> -->
-										<p>After the reviewing process is finished and the reviews are delivered to the respective author/team of authors, the author/team of authors is obliged to react to the reviewers’ suggestions and recommendations, to correct the suggested parts of the article and mark the alterations (as well as all the newly added information, theories, tables, equations, etc.) in color.
+										<p><strong>Notice</strong></p>
+										<p style="display: block;">After the reviewing process is finished and the reviews are delivered to the respective author/team of authors, the author/team of authors is obliged to react to the reviewers’ suggestions and recommendations, to correct the suggested parts of the article and mark the alterations (as well as all the newly added information, theories, tables, equations, etc.) in color.
 
 											Please copy and paste the received reviews into additional documents and provide us with your comments on the reviewers’ recommendations as well as the corrections you have made, again marked in color.
 
@@ -132,7 +127,7 @@
 										<!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/rIfRMoag1C0" frameborder="0" allowfullscreen></iframe> -->
 										<!-- </p> -->
 										<p><strong>Notice</strong></p>
-										<p>The authors/teams of authors take full responsibility for the contents of their articles. By sending their contributions to the Editorial Office of the Advances in Electrical and Electronic Engineering journal, the authors/teams of authors give their consent to electronic archiving of their articles in our Journal as well as their storing in printed version in the Czech National Library. The Editor reserves the right not to publish the contributions that are not consistent with the interests of our Journal, or the contents of which are not provable or verifiable on the basis of the citations quoted in the article. There is no fee imposed for submitting articles.</p>
+										<p style="display: block;">The authors/teams of authors take full responsibility for the contents of their articles. By sending their contributions to the Editorial Office of the Advances in Electrical and Electronic Engineering journal, the authors/teams of authors give their consent to electronic archiving of their articles in our Journal as well as their storing in printed version in the Czech National Library. The Editor reserves the right not to publish the contributions that are not consistent with the interests of our Journal, or the contents of which are not provable or verifiable on the basis of the citations quoted in the article. There is no fee imposed for submitting articles.</p>
 
 									</div>
 								</div>

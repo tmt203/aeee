@@ -1,5 +1,5 @@
 <?php
-
+use app\core\Application;
 use app\controllers\ArticleController;
 
 $articleController = new ArticleController();
@@ -92,24 +92,25 @@ $articleController = new ArticleController();
 							<div id="sj-accordion" class="sj-accordion" role="tablist" aria-multiselectable="true">
 								<?php
 								foreach ($articleController->getRandomArticles() as $index => $article) {
+									if (!$article->restrictTo || in_array(Application::$app->session->get('user'), $article->restrictTo)) {
 								?>
-									<article class="sj-post sj-editorchoice">
-										<figure class="sj-postimg">
-											<img src="/images/editorchoice/img-08.jpg" alt="image description">
-										</figure>
-										<div class="sj-postcontent">
-											<div class="sj-head">
-												<span class="sj-username"><a href="javascript:void(0);"><?php echo $article->author ?></a></span>
-												<h3><a href="javascript:void(0);" data-toggle="modal" data-target="#pdfModal" data-path="<?php echo $article->path ?>"><?php echo $article->title ?></a></h3>
+										<article class="sj-post sj-editorchoice">
+											<figure class="sj-postimg">
+												<img src="/images/editorchoice/img-08.jpg" alt="image description">
+											</figure>
+											<div class="sj-postcontent">
+												<div class="sj-head">
+													<span class="sj-username"><a href="javascript:void(0);"><?php echo $article->author ?></a></span>
+													<h3><a href="javascript:void(0);" data-toggle="modal" data-target="#pdfModal" data-path="<?php echo $article->path ?>"><?php echo $article->title ?></a></h3>
+												</div>
+												<div class="sj-description">
+													<p>DOI: <?php echo $article->doi ?>. pp. <?php echo $article->firstPage ?>-<?php echo $article->lastPage ?></p>
+												</div>
+												<a class="sj-btn" href="javascript:void(0);" data-toggle="modal" data-target="#pdfModal" data-path="<?php echo $article->path ?>">View Full Article</a>
 											</div>
-											<div class="sj-description">
-												<p>DOI: <?php echo $article->doi ?>. pp. <?php echo $article->firstPage ?>-<?php echo $article->lastPage ?></p>
-											</div>
-											<a class="sj-btn" href="javascript:void(0);" data-toggle="modal" data-target="#pdfModal" data-path="<?php echo $article->path ?>">View Full Article</a>
-											<!-- <a class="action" target="_parent" href="http://advances.utc.sk/index.php/AEEE/article/download/4471/488488741"><img title="pdf_icon_35" src="http://advances.uniza.sk/public/site/images/lat04/pdf_icon_35.png" alt="flash_logo_35" width="25" height="25" /></a> -->
-										</div>
-									</article>
+										</article>
 								<?php
+									}
 								}
 								?>
 							</div>

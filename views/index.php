@@ -38,7 +38,7 @@ if ($flashMessage) {
 				<div class="sj-bannercontent">
 					<h1><span>We Welcome Latest</span>Research Articles in<span>Electrical and</span><span>Electronic Engineering</span></h1>
 					<div class="sj-description">
-						<p>The Advances in Electrical and Electronic Engineering is a peer-reviewed periodical scientific journal aimed at publishing research results of the Journal focus areas. The role of the Journal is to facilitate contacts between research centers and the industry.... <a href="javascript:void(0);">Read more</a></p>
+						<p style="display: block;">The Advances in Electrical and Electronic Engineering is a peer-reviewed periodical scientific journal aimed at publishing research results of the Journal focus areas. The role of the Journal is to facilitate contacts between research centers and the industry.... <a href="javascript:void(0);">Read more</a></p>
 					</div>
 				</div>
 			</div>
@@ -76,10 +76,10 @@ if ($flashMessage) {
 								<h2>Explore Latest Researches</h2>
 							</div>
 							<div class="sj-description">
-								<p>Foreword about Jan Latal, Lecturer and Professor’s assistant at the Department of Telecommunications, Faculty of Electrical Engineering and Computer Science, VSB–Technical University of Ostrava, Czech Republic and former Editor-in-Chief of Advances in Electrical and Electronic Engineering journal:</p>
+								<p>Foreword about Thang Trung Nguyen, Ph.D of the Department of Electrical Engineering, Faculty of Electrical and Electronics Engineering, Ton Duc Thang University, Vietnam</p>
 							</div>
 							<div class="sj-btnarea">
-								<a class="sj-btn sj-btnactive" href="javascript:void(0);">Read More</a>
+								<a class="sj-btn sj-btnactive" href="/issues/current-issues">Read More</a>
 							</div>
 						</div>
 					</div>

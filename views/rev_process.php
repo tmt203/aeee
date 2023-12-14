@@ -34,23 +34,22 @@
 								<!-- <span>Present and Past</span> -->
 								<h2>Peer Review Process</h2>
 								<div class="sj-description">
-									<p>
-									<p>The aim of the whole peer-review procedure is to ensure the professional quality of the Journal. The task of reviewers is professional assessment of the submitted articles. All articles must be written and provided according to a specified template in electronic form. Reviewers summarize their comments and recommendations in electronic review forms in agreement with the Journal system. The review forms are provided to author(s) in case that any shortcomings have been found in the article in question. Should this prove to be the case, the shortcomings have to be corrected before publishing.</p>
-									<p>A submitted article will be published on the condition that reviewers recommend it for publication and that its author adequately responds to all presented comments and removes any possible ambiguities. The corrected article may also be subject to another review if a reviewer specifically requires it (revision required, or resubmitted for another review).</p>
-									<p>Moreover, each article is subsequently checked by the Section Editor, Layout Editor and Proofreader to guarantee the maximum quality of the article.</p>
-									<p>The period of time allocated to elaboration of a peer review is usually about 20 weeks. During this period reviewers elaborate peer reviews of a given article and express their opinions using the online peer-review form in the editing system of the Advances in Electrical and Electronic Engineering Journal.</p>
-									<p>Why is peer-reviewing in the Advances in Electrical and Electronic Engineering important?</p>
+									<p style="display: block;">The aim of the whole peer-review procedure is to ensure the professional quality of the Journal. The task of reviewers is professional assessment of the submitted articles. All articles must be written and provided according to a specified template in electronic form. Reviewers summarize their comments and recommendations in electronic review forms in agreement with the Journal system. The review forms are provided to author(s) in case that any shortcomings have been found in the article in question. Should this prove to be the case, the shortcomings have to be corrected before publishing.</p>
+									<p style="display: block;">A submitted article will be published on the condition that reviewers recommend it for publication and that its author adequately responds to all presented comments and removes any possible ambiguities. The corrected article may also be subject to another review if a reviewer specifically requires it (revision required, or resubmitted for another review).</p>
+									<p style="display: block;">Moreover, each article is subsequently checked by the Section Editor, Layout Editor and Proofreader to guarantee the maximum quality of the article.</p>
+									<p style="display: block;">The period of time allocated to elaboration of a peer review is usually about 20 weeks. During this period reviewers elaborate peer reviews of a given article and express their opinions using the online peer-review form in the editing system of the Advances in Electrical and Electronic Engineering Journal.</p>
+									<p style="display: block;">Why is peer-reviewing in the Advances in Electrical and Electronic Engineering important?</p>
 									<ul>
 										<li>It works as a filter separating and eliminating poor-quality articles of lower scientific contribution.</li>
 										<li>It increases the scientific quality of papers presented by the Journal and defines other directions of research and science in the technical, mathematical and physical branches.</li>
 									</ul>
-									<p>Prior to reviewing the given article, each reviewer should become aware of the following issues:</p>
+									<p></p>
+									<p style="display: block;">Prior to reviewing the given article, each reviewer should become aware of the following issues:</p>
 									<ul>
 										<li>whether or not he/she is qualified enough to review the given article,</li>
 										<li>whether or not he/she has enough time to elaborate a peer review in the required quality,</li>
 										<li>whether or not there is any conflict of interests on his/her side concerning elaboration of a peer review of the respective article.</li>
 									</ul>
-									</p>
 								</div>
 							</div>
 

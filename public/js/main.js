@@ -377,7 +377,7 @@ jQuery(document).on('ready', function () {
 		if (articles instanceof Array) {
 			let htmlContent = '';
 			articles.forEach(article => {
-				if (!article.restrictTo || article.restrictTo.includes(JSON.parse(localStorage.getItem('userId')))) {
+				if (article.restrictTo.length === 0 || article.restrictTo.includes(JSON.parse(localStorage.getItem('userId')))) {
 					htmlContent += `
 					<article class="sj-post sj-editorchoice">
 						<figure class="sj-postimg">
@@ -431,6 +431,7 @@ jQuery(document).on('ready', function () {
 			data: Object.fromEntries(formData),
 			success: function (response) {
 				const articles = JSON.parse(response);
+				console.log(articles);
 				updateArticles(articles, $('#sortedArticles'));
 			},
 			error: function (err) {

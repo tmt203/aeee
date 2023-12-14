@@ -44,18 +44,36 @@
 								</div>
 								<div class="sj-description">
 									<h3>Editor-in-Chief</h3>
-									<p><a href="#MFink"><strong>Dr. Tan N. Nguyen</strong></a>, Head of Communications and Signal Processing Research Group, Ton Duc Thang University, Vietnam.</p>
+									<p><a target="_blank" href="https://nguyennhattan.edu.vn/"><strong>Dr. Tan N. Nguyen</strong></a>, Head of Communications and Signal Processing Research Group, Ton Duc Thang University, Vietnam.</p>
 									<h3>Managing Editors</h3>
-									<p><a href="#EBowen"><strong>Dr. Lam-Thanh Tu</strong></a>, Communications and Signal Processing Research Group, Ton Duc Thang University, Vietnam.</p>
-									<p><a href="www.scitechhub.com/ttphg/index.html"><strong>Dr. Phuong T. Tran</strong></a>, Head of Wireless Communications Research Group, Ton Duc Thang University, Vietnam.</p>
+									<p><a target="_blank" href="https://feee.tdtu.edu.vn/nhan-su/ts-tu-lam-thanh"><strong>Dr. Lam-Thanh Tu</strong></a>, Communications and Signal Processing Research Group, Ton Duc Thang University, Vietnam.</p>
+									<p><a target="_blank" href="https://www.scitechhub.com/ttphg/index.html"><strong>Dr. Phuong T. Tran</strong></a>, Head of Wireless Communications Research Group, Ton Duc Thang University, Vietnam.</p>
 									<h3>Section Editors</h3>
-									<p><strong>Ruwantissa Abeyratne</strong>, International Civil Aviation Organization, Montreal, Canada</p>
-									<p><strong>Evon Abu-taieh</strong>, Civil Aviation Regulatory Commission, Amman, Jordan</p>
+									<p><strong>Professor. Byung-Seo Kim</strong>, Hongik University, Korea.</p>
+									<p><strong>Professor. Rupak Kharel</strong>, University of Huddersfield, United Kingdom.</p>
+									<p><strong>Associate Professor. Fayaz Hussain</strong>, Ton Duc Thang University, Vietnam.</p>
+									<p><strong>Assistant Professor. Peppino Fazio</strong>, Ca’ Foscari University of Venice, Italy.</p>
+									<p><strong>Dr. Fazel Mohammadi</strong>, University of New Haven, United State of America.</p>
+									<p><strong>Dr. Nguyen Trung Thang</strong>, Ton Duc Thang University, Vietnam.</p>
+									<p><strong>Dr. Le Anh Vu</strong>, Ton Duc Thang University, Vietnam.</p>
 									<h3>International Editorial Board Members</h3>
-									<p><strong>Ruwantissa Abeyratne</strong>, International Civil Aviation Organization, Montreal, Canada</p>
-									<p><strong>Evon Abu-taieh</strong>, Civil Aviation Regulatory Commission, Amman, Jordan</p>
-									<h3>Editorial Staff</h3>
-									<p><strong>Anh-Tu Le</strong>, Ton Duc Thang University, Vietnam</p>
+									<p><strong>Professor. Miroslav Voznak</strong>, VSB-Technical University of Ostrava, Czech Republic.</p>
+									<p><strong>Professor. Mohamed Benbouzid</strong>, University of Brest, France.</p>
+									<p><strong>Professor. Ray-Guang Cheng</strong>, National Taiwan University of Science and Technology, Taiwan.</p>
+									<p><strong>Professor. Zbigniew Leonowicz</strong>, Wroclaw University of Science and Technology, Poland.</p>
+									<p><strong>Professor. Wasiu Oyewole Popoola</strong>, University of Edinburgh, United Kingdom.</p>
+									<p><strong>Professor. Yuriy S. Shmaliy</strong>, Guanajuato University, Mexico.</p>
+									<p><strong>Professor. Lorand Szabo</strong>, Technical University of Cluj Napoca, Romania.</p>
+									<p><strong>Associate Professor. Tran Trung Duy</strong>,  Postsand Telecommunications Institute of Technology, Ho Chi Minh City, Vietnam.</p>
+									<p><strong>Associate Professor. Xingwang Li</strong>,  Henan Polytechnic University, China.</p>
+									<p><strong>Dr. Huynh Van Van</strong>,  Ton Duc Thang University, Vietnam.</p>
+									<p><strong>Dr. Lubos Rejfek</strong>,  University of Pardubice, Czech Republic.</p>
+									<p><strong>Dr. Neeta Pandey</strong>,  Delhi Technological University, India.</p>
+									<p><strong>Dr. Mauro Tropea</strong>,  University of Calabria, Italy.</p>
+									<p><strong>Dr. Huynh The Thien</strong>,  Ho Chi Minh City University of Technology and Education, Vietnam.</p>
+									<p><strong>Dr. Gaojian Huang</strong>,  Henan Polytechnic University, China.</p>
+									<h3>Layout Editor</h3>
+									<p><strong>Anh-Tu Le</strong>, Ho Chi Minh City University of Transport, Vietnam</p>
 								</div>
 							</div>
 							<div class="sj-ouraims sj-sectioninnerspace">
@@ -74,7 +92,7 @@
 													<h3><a href="javascript:void(0);">Editor-in-Chief</a></h3>
 												</div>
 												<div class="sj-description">
-													<p style="display: block;">Tan N. NGUYEN was born at Nha Trang City, Vietnam, in 1986. He received B.S. and M.S. degrees in electronics and telecommunications engineering from Ho Chi Minh University of Natural Sciences, a member of Vietnam National University at Ho Chi Minh City (Vietnam) in 2008 and 2012, respectively. He is currently pursuing his Ph.D. degree in electrical engineering at VSB Technical University of Ostrava, Czech Republic. In 2013, he joined the Faculty of Electrical and Electronics Engineering of Ton Duc Thang University, Vietnam and have been working as Lecturer since then. His major interests are cooperative communications, cognitive radio, and physical layer security.</p>
+													<p style="display: block;">Tan N. Nguyen (member IEEE) was born in 1986 in Nha Trang City, Vietnam. He received a BS degree in electronics in 2008 from Ho Chi Minh University of Natural Sciences and an MS degree in telecommunications engineering in 2012 from Vietnam National University. He received a Ph.D. in communications technologies in 2019 from the Faculty of Electrical Engineering and Computer Science at VSB – Technical University of Ostrava, Czech Republic. He joined the Faculty of Electrical and Electronics Engineering of Ton Duc Thang University, Vietnam, in 2013, and since then has been lecturing. He started as the Editor-in-Chief of Advances in Electrical and Electronic Engineering (AEEE) journal in 2023. His major interests are cooperative communications, cognitive radio, signal processing, satellite communication, UAV, and physical layer security.</p>
 												</div>
 											</div>
 										</div>

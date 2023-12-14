@@ -113,17 +113,15 @@ class ArticleController extends Controller
   // API
   public function getArticlesByVolumeAndIssueAndDate()
   {
-    $volume = isset($_POST['volume']) ? (int)$_POST['volume'] : '21';
-    $issue = isset($_POST['issue']) ? (int)$_POST['issue'] : '3';
-    $date = isset($_POST['date']) ? $_POST['date'] : '2023';
+    $volume = isset($_POST['volume']) ? (int)$_POST['volume'] : null;
+    $issue = isset($_POST['issue']) ? (int)$_POST['issue'] : null;
+    $date = isset($_POST['date']) ? $_POST['date'] : null;
 
-    $tmpArticles = $this->articles;
-
-    $rs = array_reduce($tmpArticles, function ($carry, $article) use ($volume, $issue, $date) {
+    $rs = array_reduce($this->articles, function ($carry, $article) use ($volume, $issue, $date) {
       $formattedDate = $article['Journal']['PubDate']['Year'] . '-' . $article['Journal']['PubDate']['Month'] . '-' . $article['Journal']['PubDate']['Day'];
       if (
-        (is_null($volume) || $volume === (int)$article['Journal']['Volume']) &&
-        (is_null($issue) || $issue === (int)$article['Journal']['Issue']) &&
+        (is_null($volume) || $volume == (int)$article['Journal']['Volume']) &&
+        (is_null($issue) || $issue == (int)$article['Journal']['Issue']) &&
         (is_null($date) || str_contains($formattedDate, $date))
       ) {
         $carry[] = self::createArticleObject($article);
@@ -162,10 +160,6 @@ class ArticleController extends Controller
     $content = $_POST['content'] ?? null;
     $searchBy = $_POST['searchBy'] ?? null;
     $pastYear = $_POST['pastYear'] ?? null;
-
-    // echo $content.'<br>';
-    // echo $searchBy.'<br>';
-    // exit;
 
     if ($searchBy && $content) {
       $tmpArticles = self::searchArticles($searchBy, $content);     

@@ -222,7 +222,7 @@ use app\core\Application;
 										<a href="/"><img src="/images/logo.png" alt="image description"></a>
 									</strong>
 									<div class="sj-description">
-										<p>VSB - Technical University of Ostrava and University of Zilina Faculty of Electrical Engineering... <a href="javascript:void(0);">Read More</a></p>
+										<p style="display: block;">VSB - Technical University of Ostrava and University of Zilina Faculty of Electrical Engineering... <a href="javascript:void(0);">Read More</a></p>
 									</div>
 									<ul class="sj-socialicons sj-socialiconssimple">
 										<li class="sj-facebook"><a href="javascript:void(0);"><i class="fab fa-facebook-f"></i></a></li>
