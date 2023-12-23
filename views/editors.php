@@ -50,12 +50,14 @@
 									<p><a target="_blank" href="https://www.scitechhub.com/ttphg/index.html"><strong>Dr. Phuong T. Tran</strong></a>, Head of Wireless Communications Research Group, Ton Duc Thang University, Vietnam.</p>
 									<h3>Section Editors</h3>
 									<p><strong>Professor. Byung-Seo Kim</strong>, Hongik University, Korea.</p>
+									<p><strong>Professor. Valeriy Arkhin</strong>, Buryat State University, Russia.</p>
 									<p><strong>Professor. Rupak Kharel</strong>, University of Huddersfield, United Kingdom.</p>
 									<p><strong>Associate Professor. Fayaz Hussain</strong>, Ton Duc Thang University, Vietnam.</p>
 									<p><strong>Assistant Professor. Peppino Fazio</strong>, Ca’ Foscari University of Venice, Italy.</p>
 									<p><strong>Dr. Fazel Mohammadi</strong>, University of New Haven, United State of America.</p>
 									<p><strong>Dr. Nguyen Trung Thang</strong>, Ton Duc Thang University, Vietnam.</p>
 									<p><strong>Dr. Le Anh Vu</strong>, Ton Duc Thang University, Vietnam.</p>
+									<p><strong>Dr. Nguyen Truong Khang</strong>, Van Lang University, Vietnam.</p>
 									<h3>International Editorial Board Members</h3>
 									<p><strong>Professor. Miroslav Voznak</strong>, VSB-Technical University of Ostrava, Czech Republic.</p>
 									<p><strong>Professor. Mohamed Benbouzid</strong>, University of Brest, France.</p>
