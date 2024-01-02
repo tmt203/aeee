@@ -6,6 +6,8 @@ $articleController = new ArticleController();
 
 $flashMessage = Application::$app->session->getFlash('success');
 
+echo "Root:".Application::$ROOT_DIR;
+
 // Flash message
 if ($flashMessage) {
 ?>

@@ -238,7 +238,8 @@ class ArticleController extends Controller
         $tmp = strtolower(basename($filename));
         $candidateTitle = substr($tmp, 0, strpos($tmp, ".pdf"));
 
-        if (strcmp($title, $candidateTitle) == 0 || str_contains($title, $candidateTitle)) return str_replace($root . '\public', '', $filename);
+        // str_replace($root . '\public', '', $filename);
+        if (strcmp($title, $candidateTitle) == 0 || str_contains($title, $candidateTitle)) return str_replace($root . DIRECTORY_SEPARATOR . 'public', '', $filename);
       }
     }
 
