@@ -17,3 +17,4 @@ A static website that allow users to view articles.
 
 **4. Run project:**
 - Open the command promt in the public folder and run: `php -S localhost:8080`
+- Visit site: `localhost:8080`
