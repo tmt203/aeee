@@ -288,15 +288,15 @@ use app\core\Application;
 		<!-- PDF Modal -->
 		<div class="modal fade" id="pdfModal" tabindex="-1" role="dialog" aria-labelledby="pdfModalLabel" aria-hidden="true">
 			<div class="modal-dialog mw-100" role="document">
-				<div class="modal-content container">
+				<div class="modal-content container" style="height: 90%;">
 					<div class="modal-header">
 						<h5 class="modal-title">View Article</h5>
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
 					</div>
-					<div class="modal-body">
-						<iframe style="min-width: 100%;" loading="lazy" width="100%" height="550px"></iframe>
+					<div class="modal-body h-100">
+						<iframe style="min-width: 100%;" loading="lazy" width="100%" height="100%"></iframe>
 					</div>
 				</div>
 			</div>

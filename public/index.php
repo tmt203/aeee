@@ -41,6 +41,8 @@ $app->router->get('/publish/for-readers', [SiteController::class, 'forReaders'])
 $app->router->get('/publish/for-librarians', [SiteController::class, 'forLibrarians']);
 $app->router->get('/announcements', [SiteController::class, 'announcements']);
 
+$app->router->get('/article/view/:id', [SiteController::class, 'viewArticleById']);
+
 // auth
 $app->router->get('/auth/login', [AuthController::class, 'login']);
 $app->router->post('/auth/login', [AuthController::class, 'login']);

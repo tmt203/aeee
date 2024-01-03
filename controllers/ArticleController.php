@@ -57,7 +57,8 @@ class ArticleController extends Controller
         if ($a[$sortBy] == $b[$sortBy]) {
           return 0;
         }
-        if ($asc == 0) return ($b[$sortBy] < $a[$sortBy]) ? -1 : 1;
+        if ($asc == 0)
+          return ($b[$sortBy] < $a[$sortBy]) ? -1 : 1;
         return ($a[$sortBy] < $b[$sortBy]) ? -1 : 1;
       });
     }
@@ -83,9 +84,20 @@ class ArticleController extends Controller
 
   function increaseArticleViews()
   {
-    $articleId = filter_var($_POST['id'], FILTER_SANITIZE_NUMBER_INT);
-    $this->articles[$articleId - 1]['views'] = $this->articles[$articleId - 1]['views'] + 1;
-    file_put_contents(Application::$ROOT_DIR . "/public/data/articles.json", json_encode($this->articles));
+    $postId = (int) filter_var($_POST['id'], FILTER_SANITIZE_NUMBER_INT);
+
+    foreach ($this->articles as $key => $article) {
+      $articleId = (int) end(explode(".", $article['ELocationID']['__text']));
+
+      if ($articleId === $postId) {
+        // increase views
+        $this->articles[$key]['views']++;
+        break;
+      }
+    }
+
+    // write file
+    file_put_contents(Application::$ROOT_DIR . "/public/data/articles.json", json_encode($this->articles));    
   }
 
   public function getCurrentIssues()
@@ -97,8 +109,8 @@ class ArticleController extends Controller
     $rs = array_reduce($this->articles, function ($carry, $article) use ($volume, $issue, $date) {
       $formattedDate = $article['Journal']['PubDate']['Year'] . '-' . $article['Journal']['PubDate']['Month'] . '-' . $article['Journal']['PubDate']['Day'];
       if (
-        (is_null($volume) || $volume === (int)$article['Journal']['Volume']) &&
-        (is_null($issue) || $issue === (int)$article['Journal']['Issue']) &&
+        (is_null($volume) || $volume === (int) $article['Journal']['Volume']) &&
+        (is_null($issue) || $issue === (int) $article['Journal']['Issue']) &&
         (is_null($date) || str_contains($formattedDate, $date))
       ) {
         $carry[] = self::createArticleObject($article);
@@ -110,18 +122,32 @@ class ArticleController extends Controller
     return $rs;
   }
 
+  public function getArticleById($id)
+  {
+    // Get article info
+    foreach ($this->articles as $article) {
+      $articleId = end(explode(".", $article['ELocationID']['__text']));
+
+      if ($articleId === $id) {
+        return self::getFilePath(Application::$ROOT_DIR, $article['Journal']['PubDate']['Year'], $article['Journal']['Volume'], $article['Journal']['Issue'], $article['ArticleTitle']);
+      }
+    }
+
+    return null;
+  }
+
   // API
   public function getArticlesByVolumeAndIssueAndDate()
   {
-    $volume = isset($_POST['volume']) ? (int)$_POST['volume'] : null;
-    $issue = isset($_POST['issue']) ? (int)$_POST['issue'] : null;
+    $volume = isset($_POST['volume']) ? (int) $_POST['volume'] : null;
+    $issue = isset($_POST['issue']) ? (int) $_POST['issue'] : null;
     $date = isset($_POST['date']) ? $_POST['date'] : null;
 
     $rs = array_reduce($this->articles, function ($carry, $article) use ($volume, $issue, $date) {
       $formattedDate = $article['Journal']['PubDate']['Year'] . '-' . $article['Journal']['PubDate']['Month'] . '-' . $article['Journal']['PubDate']['Day'];
       if (
-        (is_null($volume) || $volume == (int)$article['Journal']['Volume']) &&
-        (is_null($issue) || $issue == (int)$article['Journal']['Issue']) &&
+        (is_null($volume) || $volume == (int) $article['Journal']['Volume']) &&
+        (is_null($issue) || $issue == (int) $article['Journal']['Issue']) &&
         (is_null($date) || str_contains($formattedDate, $date))
       ) {
         $carry[] = self::createArticleObject($article);
@@ -162,7 +188,7 @@ class ArticleController extends Controller
     $pastYear = $_POST['pastYear'] ?? null;
 
     if ($searchBy && $content) {
-      $tmpArticles = self::searchArticles($searchBy, $content);     
+      $tmpArticles = self::searchArticles($searchBy, $content);
     }
 
     if ($pastYear) {
@@ -190,17 +216,18 @@ class ArticleController extends Controller
     exit;
   }
 
-  public function extractMetadataByVolumeAndIssue() {
+  public function extractMetadataByVolumeAndIssue()
+  {
     $volume = $_POST['volume'];
     $issue = $_POST['issue'];
 
-    $volume = isset($_POST['volume']) ? (int)$_POST['volume'] : null;
-    $issue = isset($_POST['issue']) ? (int)$_POST['issue'] : null;
+    $volume = isset($_POST['volume']) ? (int) $_POST['volume'] : null;
+    $issue = isset($_POST['issue']) ? (int) $_POST['issue'] : null;
 
-    $filteredArticles = array_reduce($this->articles, function ($carry, $article) use ($volume, $issue, $date) {
+    $filteredArticles = array_reduce($this->articles, function ($carry, $article) use ($volume, $issue) {
       if (
-        (is_null($volume) || $volume == (int)$article['Journal']['Volume']) &&
-        (is_null($issue) || $issue == (int)$article['Journal']['Issue'])
+        (is_null($volume) || $volume == (int) $article['Journal']['Volume']) &&
+        (is_null($issue) || $issue == (int) $article['Journal']['Issue'])
       ) {
         $carry[] = self::createMetadataObject($article);
       }
@@ -213,7 +240,7 @@ class ArticleController extends Controller
     $output = [
       "doi_batch" => [
         "head" => [
-          "doi_batch_id" => "AEEE_".$formattedTimestamp,
+          "doi_batch_id" => "AEEE_" . $formattedTimestamp,
           "timestamp" => $formattedTimestamp,
           "depositor" => [
             "name" => "Lam-Thanh Tu",
@@ -274,12 +301,14 @@ class ArticleController extends Controller
 
     if (file_exists($path)) {
       foreach (new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($path)) as $filename) {
-        if (basename($filename)[0] == '.') continue;
+        if (basename($filename)[0] == '.')
+          continue;
         $tmp = strtolower(basename($filename));
         $candidateTitle = substr($tmp, 0, strpos($tmp, ".pdf"));
 
         // str_replace($root . '\public', '', $filename);
-        if (strcmp($title, $candidateTitle) == 0 || str_contains($title, $candidateTitle)) return str_replace($root . DIRECTORY_SEPARATOR . 'public', '', $filename);
+        if (strcmp($title, $candidateTitle) == 0 || str_contains($title, $candidateTitle))
+          return str_replace($root . DIRECTORY_SEPARATOR . 'public', '', $filename);
       }
     }
 
@@ -314,8 +343,8 @@ class ArticleController extends Controller
         return array(
           "given_name" => $author['FirstName'],
           "surname" => $author['LastName']
-        );        
-      }, $authors);      
+        );
+      }, $authors);
     } else {
       return array(
         "given_name" => $authors['FirstName'],
@@ -342,7 +371,8 @@ class ArticleController extends Controller
     return $obj;
   }
 
-  private function createMetadataObject($article) { 
+  private function createMetadataObject($article)
+  {
     $outputArray = [
       "journal_metadata" => [
         "full_title" => $article["Journal"]["JournalTitle"],
@@ -350,15 +380,15 @@ class ArticleController extends Controller
         "issn" => ["1804-3119", $article["Journal"]["Issn"]],
       ],
       "journal_issue" => [
-          "publication_date" => [
-            "month" => intval($article["Journal"]["PubDate"]["Month"]),
-            "day" => intval($article["Journal"]["PubDate"]["Day"]),
-            "year" => intval($article["Journal"]["PubDate"]["Year"]),
-          ],
-          "journal_volume" => [
-            "volume" => intval($article["Journal"]["Volume"]),
-          ],
-          "issue" => intval($article["Journal"]["Issue"]),
+        "publication_date" => [
+          "month" => intval($article["Journal"]["PubDate"]["Month"]),
+          "day" => intval($article["Journal"]["PubDate"]["Day"]),
+          "year" => intval($article["Journal"]["PubDate"]["Year"]),
+        ],
+        "journal_volume" => [
+          "volume" => intval($article["Journal"]["Volume"]),
+        ],
+        "issue" => intval($article["Journal"]["Issue"]),
       ],
       "journal_article" => [
         "titles" => [
@@ -368,16 +398,16 @@ class ArticleController extends Controller
           "person_name" => self::getMetadataAuthors($article['AuthorList']['Author']),
         ],
         "publication_date" => [
-            "month" => intval($article["Journal"]["PubDate"]["Month"]),
-            "day" => intval($article["Journal"]["PubDate"]["Day"]),
-            "year" => intval($article["Journal"]["PubDate"]["Year"]),
-          ],
+          "month" => intval($article["Journal"]["PubDate"]["Month"]),
+          "day" => intval($article["Journal"]["PubDate"]["Day"]),
+          "year" => intval($article["Journal"]["PubDate"]["Year"]),
+        ],
         "publisher_item" => [
           "item_number" => $article["FirstPage"] . "-" . $article["LastPage"],
         ],
         "doi_data" => [
           "doi" => $article["ELocationID"]["__text"],
-          "resource" => "http://advances.utc.sk/index.php/AEEE/article/view/".end(explode(".", $article["ELocationID"]["__text"])),
+          "resource" => "http://advances.utc.sk/index.php/AEEE/article/view/" . end(explode(".", $article["ELocationID"]["__text"])),
         ],
       ],
     ];
@@ -385,7 +415,8 @@ class ArticleController extends Controller
     return $outputArray;
   }
 
-  private function arrayToXML($data, $xml) {
+  private function arrayToXML($data, $xml)
+  {
     foreach ($data as $key => $value) {
       if (is_array($value)) {
         $subnode = $xml->addChild($key);
@@ -398,9 +429,10 @@ class ArticleController extends Controller
     return $xml;
   }
 
-  private function convertToXML($data) {
+  private function convertToXML($data)
+  {
     $xml = new \SimpleXMLElement('<doi_batch xmlns="http://www.crossref.org/schema/4.3.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="4.3.0" xsi:schemaLocation="http://www.crossref.org/schema/4.3.0 http://www.crossref.org/schema/4.3.0/crossref4.3.0.xsd"></doi_batch>');
-    
+
     // Get the modified XML object
     $metadata = self::arrayToXML($data, $xml);
     echo $metadata->saveXML();

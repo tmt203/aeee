@@ -3,6 +3,8 @@
 namespace app\controllers;
 
 use app\core\Controller;
+use app\core\Request;
+use app\core\Response;
 
 class SiteController extends Controller
 {
@@ -110,6 +112,17 @@ class SiteController extends Controller
   public function download()
   {
     return $this->render('download');
+  }
+
+  // view article
+  public function viewArticleById(Request $request, Response $response) {
+    $articleController = new ArticleController();
+    $id = $request->getParams()['id'];
+    $article = $articleController->getArticleById($id);
+
+    return $this->render('view_article', [
+      'article' => $article
+    ]);
   }
 
   // custom - not render view

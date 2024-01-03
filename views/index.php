@@ -118,11 +118,13 @@ if ($flashMessage) {
 													</a>
 												</span>
 												<h3>
-													<a class="viewArticleBtn" data-id="<?php echo $article->id ?>" href="javascript:void(0);" data-toggle="modal" data-target="#pdfModal" data-path="<?php echo $article->path ?>"><?php echo ucfirst($article->title) ?></a>
+													<!-- <a class="viewArticleBtn" data-id="<?php echo $article->id ?>" href="javascript:void(0);" data-toggle="modal" data-target="#pdfModal" data-path="<?php echo $article->path ?>"><?php echo ucfirst($article->title) ?></a> -->
+													<a class="viewArticleBtn" data-id="<?php echo $article->id ?>" href="/article/view/<?php echo $article->id ?>"><?php echo ucfirst($article->title) ?></a>
 												</h3>
 												<span>Views: <?php echo $article->views ?></span>
 											</div>
-											<a class="sj-btn viewArticleBtn" href="javascript:void(0);" data-id="<?php echo $article->id ?>" data-toggle="modal" data-target="#pdfModal" data-path="<?php echo $article->path ?>">View Full Article</a>
+											<!-- <a class="sj-btn viewArticleBtn" href="javascript:void(0);" data-id="<?php echo $article->id ?>" data-toggle="modal" data-target="#pdfModal" data-path="<?php echo $article->path ?>">View Full Article</a> -->
+											<a class="sj-btn viewArticleBtn" href="/articles/view/<?php echo $article->id ?>" data-id="<?php echo $article->id ?>">View Full Article</a>
 										</div>
 									</article>																	
 									<?php 
@@ -152,7 +154,7 @@ if ($flashMessage) {
 							<div class="sj-previousissues">
 								<ul class="sj-navtabs nav" id="myTab" role="tablist" style="height: 170px; overflow-y: scroll;">
 									<?php
-									for ($i = 2022; $i >= 2002; $i--) {
+									for ($i = date("Y")-1; $i >= 2002; $i--) {
 									?>
 										<li class="nav-item">
 											<a class="nav-link" id="home-tab" data-toggle="tab" href="#<?php echo $i ?>" role="tab" aria-controls="<?php echo $i ?>" aria-selected="true">
@@ -165,11 +167,11 @@ if ($flashMessage) {
 								</ul>
 								<div class="sj-tabcontent tab-content" id="myTabContent">
 									<?php
-									for ($year = 2022; $year >= 2002; $year--) {
+									for ($year = date("Y")-1; $year >= 2002; $year--) {
 										// Get articles for the year
 										$articlesByYear = $articleController->getArticlesByYear($year);
 									?>
-										<div class="tab-pane fade <?php if ($year == 2022) echo "show active" ?>" id="<?php echo $year ?>" role="tabpanel">
+										<div class="tab-pane fade <?php if ($year == date("Y")-1) echo "show active" ?>" id="<?php echo $year ?>" role="tabpanel">
 											<div id="sj-issuesslider-<?php echo $year ?>" class="sj-issuesslider-<?php echo $year ?> sj-issuesslider owl-carousel">
 												<?php
 												if (count($articlesByYear) !== 0) {
@@ -183,10 +185,12 @@ if ($flashMessage) {
 															<div class="sj-postcontent">
 																<div class="sj-head">
 																	<span class="sj-username">
-																		<a class="viewArticleBtn" data-id="<?php echo $article->id ?>" href="javascript:void(0);" data-toggle="modal" data-target="#pdfModal" data-path="<?php echo $article->path ?>"><?php echo $article->author ?></a>
+																		<!-- <a class="viewArticleBtn" data-id="<?php echo $article->id ?>" href="javascript:void(0);" data-toggle="modal" data-target="#pdfModal" data-path="<?php echo $article->path ?>"><?php echo $article->author ?></a> -->
+																		<a class="viewArticleBtn" data-id="<?php echo $article->id ?>" href="/article/view/<?php echo $article->id ?>"><?php echo $article->author ?></a>
 																	</span>
 																	<h3>
-																		<a class="viewArticleBtn" data-id="<?php echo $article->id ?>" href="javascript:void(0);" data-toggle="modal" data-target="#pdfModal" data-path="<?php echo $article->path ?>"><?php echo $article->title ?></a>
+																		<!-- <a class="viewArticleBtn" data-id="<?php echo $article->id ?>" href="javascript:void(0);" data-toggle="modal" data-target="#pdfModal" data-path="<?php echo $article->path ?>"><?php echo $article->title ?></a> -->
+																		<a class="viewArticleBtn" data-id="<?php echo $article->id ?>" href="/article/view/<?php echo $article->id ?>"><?php echo $article->title ?></a>
 																	</h3>
 																</div>
 															</div>
@@ -246,35 +250,7 @@ if ($flashMessage) {
 						<!--************************************
 										News Articles Start
 								*************************************-->
-						<section class="sj-haslayout sj-sectioninnerspace">
-							<div class="sj-borderheading">
-								<h3>What's Hot In News</h3>
-								<a class="sj-btnview" href="javascript:void(0);">View All</a>
-							</div>
-							<div class="sj-newsposts">
-								<div id="sj-newsarticlesslider" class="sj-newsarticlesslider sj-newsarticles owl-carousel">
-									<?php
-									foreach ($articleController->getCurrentIssues() as $index => $article) {
-									?>
-										<div class="item">
-											<div class="sj-newsarticle">
-												<!-- <figure class="sj-newsimg">
-													<img src="/images/news/img-01.jpg" alt="image description">
-												</figure> -->
-												<div class="sj-newscontent">
-													<div class="sj-newshead">
-														<time class="sj-posttimedate"><?php echo $articleController->formatDate($article->pubDate); ?></time>
-														<h3><a class="viewArticleBtn" data-id="<?php echo $article->id ?>" href="javascript:void(0);" data-toggle="modal" data-target="#pdfModal" data-path="<?php echo $article->path ?>"><?php echo $article->title ?></a></h3>
-													</div>
-												</div>
-											</div>
-										</div>
-									<?php
-									}
-									?>
-								</div>
-							</div>
-						</section>
+						<!-- Hot in news -->
 						<!--************************************
 										News Articles End
 								*************************************-->
