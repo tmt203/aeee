@@ -315,6 +315,7 @@ use app\core\Application;
 	<script src="/js/countdown.js"></script>
 	<script src="/js/appear.js"></script>
 	<script src="/js/toastr.min.js"></script>
+	<script src="/js/xml2json.min.js"></script>
 	<script src="/js/main.js"></script>
 </body>
 

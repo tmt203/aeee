@@ -525,5 +525,41 @@ jQuery(document).on('ready', function () {
 	// });
 	// --------------- Event on register.php ---------------
 
+	// --------------- Event on extract_metadata.php ---------------
+	$('#extractMetadataBtn').click(function () {
+		const volume = $('input[name="volume"]').val() || 21;
+		const issue = $('input[name="issue"]').val() || 3;
 
+		const formData = new FormData();
+		if (volume && volume !== '') formData.append('volume', volume);
+		if (issue && issue !== '') formData.append('issue', issue);
+
+		$.ajax({
+			url: BASE_URL + '/api/articles/extractMetadataByVolumeAndIssue',
+			method: 'post',
+			data: formData,
+			processData: false,
+			contentType: false,
+			success: function (response) {
+				// convert to XML
+				const x2js = new X2JS();
+				const xmlData = x2js.json2xml_str(JSON.parse(response));
+
+				// download XML file
+				const dataStr = "data:text/xml;charset=utf-8," + encodeURIComponent(xmlData);
+				const anchor = document.createElement('a');
+
+				anchor.setAttribute("href", dataStr);
+				anchor.setAttribute("download", 'crossref.xml');
+
+				document.body.appendChild(anchor);
+				anchor.click();
+				anchor.remove();
+			},
+			error: function (err) {
+				console.log(err);
+			}
+		});
+	});
+	// --------------- Event on extract_metadata.php ---------------
 });

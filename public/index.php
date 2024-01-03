@@ -55,6 +55,7 @@ $app->router->post('/api/articles/increaseArticleViews', [ArticleController::cla
 $app->router->post('/api/articles/getArticlesByVolumeAndIssueAndDate', [ArticleController::class, 'getArticlesByVolumeAndIssueAndDate']);
 $app->router->post('/api/articles/filterArticles', [ArticleController::class, 'filterArticles']);
 $app->router->post('/api/articles/searchAndFilterArticles', [ArticleController::class, 'searchAndFilterArticles']);
+$app->router->post('/api/articles/extractMetadataByVolumeAndIssue', [ArticleController::class, 'extractMetadataByVolumeAndIssue']);
 
 
 $app->run();

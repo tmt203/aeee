@@ -190,6 +190,46 @@ class ArticleController extends Controller
     exit;
   }
 
+  public function extractMetadataByVolumeAndIssue() {
+    $volume = $_POST['volume'];
+    $issue = $_POST['issue'];
+
+    $volume = isset($_POST['volume']) ? (int)$_POST['volume'] : null;
+    $issue = isset($_POST['issue']) ? (int)$_POST['issue'] : null;
+
+    $filteredArticles = array_reduce($this->articles, function ($carry, $article) use ($volume, $issue, $date) {
+      if (
+        (is_null($volume) || $volume == (int)$article['Journal']['Volume']) &&
+        (is_null($issue) || $issue == (int)$article['Journal']['Issue'])
+      ) {
+        $carry[] = self::createMetadataObject($article);
+      }
+
+      return $carry;
+    }, []);
+
+    $formattedTimestamp = date("U", time());
+
+    $output = [
+      "doi_batch" => [
+        "head" => [
+          "doi_batch_id" => "AEEE_".$formattedTimestamp,
+          "timestamp" => $formattedTimestamp,
+          "depositor" => [
+            "name" => "Lam-Thanh Tu",
+            "email_address" => "tulamthanh@tdtu.edu.vn",
+          ],
+          "registrant" => "Faculty of Electrical Engineering and Computer Science",
+        ],
+        "body" => [
+          "journal" => $filteredArticles,
+        ],
+      ],
+    ];
+
+    echo json_encode($output, JSON_PRETTY_PRINT);
+  }
+
   // Helper functions
   private function searchArticles($searchBy, $content)
   {
@@ -262,6 +302,28 @@ class ArticleController extends Controller
     }
   }
 
+  private function getMetadataAuthors($authors)
+  {
+    // Check if the first element is an array or an object
+    $firstElement = reset($authors);
+    $isAssociativeArray = is_array($firstElement) && array_keys($firstElement) !== range(0, count($firstElement) - 1);
+
+    if ($isAssociativeArray) {
+      // Handle associative arrays (objects)
+      return array_map(function ($author) {
+        return array(
+          "given_name" => $author['FirstName'],
+          "surname" => $author['LastName']
+        );        
+      }, $authors);      
+    } else {
+      return array(
+        "given_name" => $authors['FirstName'],
+        "surname" => $authors['LastName']
+      );
+    }
+  }
+
   private function createArticleObject($article)
   {
     $obj = new stdClass;
@@ -278,5 +340,69 @@ class ArticleController extends Controller
     $obj->pubDate = $article['Journal']['PubDate']['Day'] . '-' . $article['Journal']['PubDate']['Month'] . '-' . $article['Journal']['PubDate']['Year'];
     $obj->restrictTo = isset($article['restrictTo']) ? $article['restrictTo'] : [];
     return $obj;
+  }
+
+  private function createMetadataObject($article) { 
+    $outputArray = [
+      "journal_metadata" => [
+        "full_title" => $article["Journal"]["JournalTitle"],
+        "abbrev_title" => "AEEE",
+        "issn" => ["1804-3119", $article["Journal"]["Issn"]],
+      ],
+      "journal_issue" => [
+          "publication_date" => [
+            "month" => intval($article["Journal"]["PubDate"]["Month"]),
+            "day" => intval($article["Journal"]["PubDate"]["Day"]),
+            "year" => intval($article["Journal"]["PubDate"]["Year"]),
+          ],
+          "journal_volume" => [
+            "volume" => intval($article["Journal"]["Volume"]),
+          ],
+          "issue" => intval($article["Journal"]["Issue"]),
+      ],
+      "journal_article" => [
+        "titles" => [
+          "title" => $article["ArticleTitle"],
+        ],
+        "contributors" => [
+          "person_name" => self::getMetadataAuthors($article['AuthorList']['Author']),
+        ],
+        "publication_date" => [
+            "month" => intval($article["Journal"]["PubDate"]["Month"]),
+            "day" => intval($article["Journal"]["PubDate"]["Day"]),
+            "year" => intval($article["Journal"]["PubDate"]["Year"]),
+          ],
+        "publisher_item" => [
+          "item_number" => $article["FirstPage"] . "-" . $article["LastPage"],
+        ],
+        "doi_data" => [
+          "doi" => $article["ELocationID"]["__text"],
+          "resource" => "http://advances.utc.sk/index.php/AEEE/article/view/".end(explode(".", $article["ELocationID"]["__text"])),
+        ],
+      ],
+    ];
+
+    return $outputArray;
+  }
+
+  private function arrayToXML($data, $xml) {
+    foreach ($data as $key => $value) {
+      if (is_array($value)) {
+        $subnode = $xml->addChild($key);
+        self::arrayToXML($value, $subnode);
+      } else {
+        $xml->addChild($key, htmlspecialchars($value));
+      }
+    }
+
+    return $xml;
+  }
+
+  private function convertToXML($data) {
+    $xml = new \SimpleXMLElement('<doi_batch xmlns="http://www.crossref.org/schema/4.3.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="4.3.0" xsi:schemaLocation="http://www.crossref.org/schema/4.3.0 http://www.crossref.org/schema/4.3.0/crossref4.3.0.xsd"></doi_batch>');
+    
+    // Get the modified XML object
+    $metadata = self::arrayToXML($data, $xml);
+    echo $metadata->saveXML();
   }
 }
