@@ -105,9 +105,9 @@ $articleController = new ArticleController();
 									if (!$article->restrictTo || in_array(Application::$app->session->get('user'), $article->restrictTo)) {
 								?>
 									<article class="sj-post sj-editorchoice">
-										<figure class="sj-postimg">
+										<!-- <figure class="sj-postimg">
 											<img src="/images/editorchoice/img-08.jpg" alt="image description">
-										</figure>
+										</figure> -->
 										<div class="sj-postcontent">
 											<div class="sj-head">
 												<span class="sj-username"><a href="javascript:void(0);"><?php echo $article->author ?></a></span>

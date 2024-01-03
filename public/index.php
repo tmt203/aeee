@@ -31,6 +31,7 @@ $app->router->get('/about-us/contact', [SiteController::class, 'contact']);
 $app->router->get('/editors', [SiteController::class, 'editors']);
 $app->router->get('/issues/current-issues', [SiteController::class, 'currentIssues']);
 $app->router->get('/issues/archives', [SiteController::class, 'archives']);
+$app->router->get('/issues/extract-metadata', [SiteController::class, 'extractMetadata']);
 $app->router->get('/publish/author-guidelines/submission', [SiteController::class, 'submission']);
 $app->router->get('/publish/author-guidelines/demonstration-videos', [SiteController::class, 'demonstrationVideos']);
 $app->router->get('/publish/publishing-procedure', [SiteController::class, 'publishingProcedure']);
@@ -43,8 +44,8 @@ $app->router->get('/announcements', [SiteController::class, 'announcements']);
 // auth
 $app->router->get('/auth/login', [AuthController::class, 'login']);
 $app->router->post('/auth/login', [AuthController::class, 'login']);
-$app->router->get('/auth/register', [AuthController::class, 'register']);
-$app->router->post('/auth/register', [AuthController::class, 'register']);
+// $app->router->get('/auth/register', [AuthController::class, 'register']);
+// $app->router->post('/auth/register', [AuthController::class, 'register']);
 $app->router->get('/auth/logout', [AuthController::class, 'logout']);
 
 

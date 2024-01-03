@@ -77,7 +77,7 @@ use app\core\Application;
 										<div class="sj-loginarea">
 											<ul class="sj-loging">
 												<li><a href="/auth/login">Login</a></li>
-												<li><a href="/auth/register">Register</a></li>
+												<!-- <li><a href="/auth/register">Register</a></li> -->
 											</ul>
 										</div>
 									<?php
@@ -106,22 +106,7 @@ use app\core\Application;
 												localStorage.removeItem('userId');
 											}
 										</script>
-									<?php } ?>
-									<div class="sj-languages">
-										<a id="sj-languages-button" href="javascript:void(0);">
-											<img src="/images/flags/flag-02.jpg" alt="image description">
-											<span>ENG</span>
-											<i class="fa fa-angle-down"></i>
-										</a>
-										<ul id="translateCZEBtn">
-											<li>
-												<a href="javascript:void(0);">
-													<img src="/images/flags/flag-01.jpg" alt="image description">
-													<span>CZE</span>
-												</a>
-											</li>
-										</ul>
-									</div>
+									<?php } ?>									
 								</div>
 							</div>
 							<div class="sj-navigationarea">
@@ -156,6 +141,7 @@ use app\core\Application;
 													<ul class="sub-menu">
 														<li><a href="/issues/current-issues">Current Issue</a></li>
 														<li><a href="/issues/archives">Archives</a></li>
+														<li><a href="/issues/extract-metadata">Extract Metadata</a></li>
 													</ul>
 												</li>
 												<li class="menu-item-has-children page_item_has_children">

@@ -6,8 +6,6 @@ $articleController = new ArticleController();
 
 $flashMessage = Application::$app->session->getFlash('success');
 
-echo "Root:".Application::$ROOT_DIR;
-
 // Flash message
 if ($flashMessage) {
 ?>
@@ -109,9 +107,9 @@ if ($flashMessage) {
 									if (!$article->restrictTo || in_array(Application::$app->session->get('user'), $article->restrictTo)) {		
 								?>
 									<article class="sj-post sj-editorchoice">
-										<figure class="sj-postimg">
+										<!-- <figure class="sj-postimg">
 											<img src="/images/editorchoice/img-01.jpg" alt="image" />
-										</figure>
+										</figure> -->
 										<div class="sj-postcontent">
 											<div class="sj-head">
 												<span class="sj-username">
@@ -179,9 +177,9 @@ if ($flashMessage) {
 													foreach ($articlesByYear as $index => $article) {
 												?>
 														<article class="sj-post sj-editorchoice sj-smallpost">
-															<figure class="sj-postimg">
+															<!-- <figure class="sj-postimg">
 																<img src="/images/editorchoice/img-04.jpg" alt="image description" />
-															</figure>
+															</figure> -->
 															<div class="sj-postcontent">
 																<div class="sj-head">
 																	<span class="sj-username">
@@ -220,7 +218,7 @@ if ($flashMessage) {
 								*************************************-->
 						<section class="sj-haslayout sj-sectioninnerspace">
 							<div class="sj-borderheading">
-								<h3>Coming In 2023</h3>
+								<h3>Coming In <?php echo date("Y") ?></h3>
 								<a class="sj-btnview" href="javascript:void(0);">View All</a>
 							</div>
 							<div id="sj-upcomingbooksslider" class="sj-upcomingbooksslider sj-upcomingbooks owl-carousel">
@@ -260,9 +258,9 @@ if ($flashMessage) {
 									?>
 										<div class="item">
 											<div class="sj-newsarticle">
-												<figure class="sj-newsimg">
+												<!-- <figure class="sj-newsimg">
 													<img src="/images/news/img-01.jpg" alt="image description">
-												</figure>
+												</figure> -->
 												<div class="sj-newscontent">
 													<div class="sj-newshead">
 														<time class="sj-posttimedate"><?php echo $articleController->formatDate($article->pubDate); ?></time>

@@ -379,10 +379,7 @@ jQuery(document).on('ready', function () {
 			articles.forEach(article => {
 				if (article.restrictTo.length === 0 || article.restrictTo.includes(JSON.parse(localStorage.getItem('userId')))) {
 					htmlContent += `
-					<article class="sj-post sj-editorchoice">
-						<figure class="sj-postimg">
-							<img src="/images/editorchoice/img-08.jpg" alt="image description">
-						</figure>
+					<article class="sj-post sj-editorchoice">						
 						<div class="sj-postcontent">
 							<div class="sj-head">
 								<span class="sj-username"><a href="javascript:void(0);">${article.author}</a></span>
@@ -475,9 +472,9 @@ jQuery(document).on('ready', function () {
 		const date = $('input[name="date"]').val();
 
 		const formData = new FormData();
-		if (volume !== '') formData.append('volume', volume);
-		if (issue !== '') formData.append('issue', issue);
-		if (date !== '') formData.append('date', date);
+		if (volume && volume !== '') formData.append('volume', volume);
+		if (issue && issue !== '') formData.append('issue', issue);
+		if (date && date !== '') formData.append('date', date);
 
 		$.ajax({
 			url: BASE_URL + '/api/articles/getArticlesByVolumeAndIssueAndDate',
@@ -488,6 +485,7 @@ jQuery(document).on('ready', function () {
 			success: function (response) {
 				const articles = JSON.parse(response);
 				updateArticles(articles, $('#sj-accordion'));
+				$('.volume-info').html(`Volume: ${volume}, Number: ${issue}`);
 			},
 			error: function (err) {
 				console.log(err);

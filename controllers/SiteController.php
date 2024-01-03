@@ -60,6 +60,10 @@ class SiteController extends Controller
     return $this->render('issues_years');
   }
 
+  public function extractMetadata() {
+    return $this->render('extract_metadata');
+  }
+
   // publish
   public function submission()
   {

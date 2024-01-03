@@ -13,10 +13,10 @@ $articleController = new ArticleController();
 		<div class="row">
 			<div class="col-12 col-sm-12 col-md-12 col-lg-12">
 				<div class="sj-innerbannercontent">
-					<h1>Archives</h1>
+					<h1>Extract Metadata</h1>
 					<ol class="sj-breadcrumb">
 						<li><a href="javascript:void(0);">Home</a></li>
-						<li><a href="javascript:void(0);">Archives</a></li>
+						<li><a href="javascript:void(0);">Extract metadata</a></li>
 					</ol>
 				</div>
 			</div>
@@ -37,7 +37,7 @@ $articleController = new ArticleController();
 					<aside id="sj-sidebarvtwo" class="sj-sidebar">
 						<div class="sj-widget sj-widgetvolissue">
 							<div class="sj-widgetheading">
-								<h3>By Volume and Issue</h3>
+								<h3>Enter Volume and Issue</h3>
 							</div>
 							<div class="sj-widgetcontent">
 								<form class="sj-formtheme sj-formissuevol">
@@ -47,51 +47,26 @@ $articleController = new ArticleController();
 										</div>
 										<div class="form-group">
 											<input type="text" name="issue" class="form-control" placeholder="Issue no.">
-										</div>
-									</fieldset>
+										</div>                                        
+									</fieldset>                                                                        
 								</form>
 							</div>
 						</div>
-						<div class="sj-widget sj-widgetsearchdate">
-							<div class="sj-widgetheading">
-								<h3>By Date</h3>
-							</div>
-							<div class="sj-widgetcontent">
-								<form class="sj-formtheme sj-formsearchbydate">
-									<fieldset>
-										<div class="form-group sj-inputwithicon">
-											<i class="fab fa-calendar"></i>
-											<input class="form-control" name="date" data-date-format="yyyy-mm-dd" id="datepicker" placeholder="YYYY - MM - DD">
-											<!-- <input type="text" name="date" class="form-control" placeholder="YYYY - MM - DD"> -->
-										</div>
-										<div class="sj-filterbtns">
-											<a id="applyFilterBtn" class="sj-btn" href="javascript:void(0)">Apply Filter</a>
-											<a id="resetAllBtn" class="sj-btn" href="javascript:void(0)">Reset All</a>
-										</div>
-									</fieldset>
-								</form>
-							</div>
+						<div class="sj-filterbtns">
+							<a id="applyFilterBtn" class="sj-btn" href="javascript:void(0)">Apply Filter</a>
+							<a id="extractMetadataBtn" class="sj-btn" href="javascript:void(0)">Extract</a>
 						</div>
 					</aside>
 				</div>
 				<div class="col-12 col-sm-12 col-md-7 col-lg-4 col-xl-6">
 					<div id="sj-content" class="sj-content">
-						<div class="sj-uploadarticle">
-							<figure class="sj-uploadarticleimg">
-								<img src="/images/upload-articlebg.jpg" alt="image description">
-								<figcaption>
-									<div class="sj-uploadcontent">
-										<span>Do You Want To Upload Your Article?</span>
-										<h3>Submit Now &amp; Make Your Online Presence</h3>
-										<a class="sj-btn" href="https://aeee.manuscriptmanager.net">Submit Now</a>
-									</div>
-								</figcaption>
-							</figure>
+						<div class="sj-uploadarticle volume-info">
+							Volume: 21, Number: 3
 						</div>
 						<div class="sj-issuesyears">
 							<div id="sj-accordion" class="sj-accordion" role="tablist" aria-multiselectable="true">
 								<?php
-								foreach ($articleController->getRandomArticles() as $index => $article) {
+								foreach ($articleController->getCurrentIssues() as $index => $article) {
 									if (!$article->restrictTo || in_array(Application::$app->session->get('user'), $article->restrictTo)) {
 								?>
 										<article class="sj-post sj-editorchoice">
