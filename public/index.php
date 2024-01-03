@@ -44,8 +44,8 @@ $app->router->get('/announcements', [SiteController::class, 'announcements']);
 // auth
 $app->router->get('/auth/login', [AuthController::class, 'login']);
 $app->router->post('/auth/login', [AuthController::class, 'login']);
-// $app->router->get('/auth/register', [AuthController::class, 'register']);
-// $app->router->post('/auth/register', [AuthController::class, 'register']);
+$app->router->get('/auth/register', [AuthController::class, 'register']);
+$app->router->post('/auth/register', [AuthController::class, 'register']);
 $app->router->get('/auth/logout', [AuthController::class, 'logout']);
 
 

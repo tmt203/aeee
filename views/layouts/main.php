@@ -141,7 +141,13 @@ use app\core\Application;
 													<ul class="sub-menu">
 														<li><a href="/issues/current-issues">Current Issue</a></li>
 														<li><a href="/issues/archives">Archives</a></li>
-														<li><a href="/issues/extract-metadata">Extract Metadata</a></li>
+														<?php 
+															if (!Application::isGuest()) {
+														?>
+															<li><a href="/issues/extract-metadata">Extract Metadata</a></li>
+														<?php
+															}
+														?>
 													</ul>
 												</li>
 												<li class="menu-item-has-children page_item_has_children">

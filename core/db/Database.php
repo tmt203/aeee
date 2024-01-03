@@ -26,7 +26,7 @@ class Database {
         continue;
       } 
 
-      require_once Application::$ROOT_DIR.'./migrations/'.$migration;
+      require_once Application::$ROOT_DIR.DIRECTORY_SEPARATOR.'migrations'.DIRECTORY_SEPARATOR.$migration;
       $className = pathinfo($migration, PATHINFO_FILENAME);
       $instance = new $className();
       $this->log("Applying migration $migration");
